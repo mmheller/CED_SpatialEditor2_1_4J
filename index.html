@@ -11,11 +11,11 @@ Date:        February 2018-->
    
     <link rel="stylesheet" href="https://js.arcgis.com/3.20/dijit/themes/claro/claro.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css" />
-    <link rel="stylesheet" type="text/css" href="Styles/panel2.css" />
-    <!--<link rel="stylesheet" type="text/css" href="{% static 'ced_main/images/grsgmap/Styles/panel2.css' %}" />-->
+    <!--<link rel="stylesheet" type="text/css" href="Styles/panel2.css" />-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ced_main/images/grsgmap/Styles/panel2.css' %}" />
     
-    <script type="text/javascript">var dojoConfig = {paths: { extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras" }};</script>      
-    <!--<script type="text/javascript"> var dojoConfig = { paths: { extras: "{% static 'ced_main/images/grsgmap/extras' %}"} };</script>-->
+    <!--<script type="text/javascript">var dojoConfig = {paths: { extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras" }};</script>-->      
+    <script type="text/javascript"> var dojoConfig = { paths: { extras: "{% static 'ced_main/images/grsgmap/extras' %}"} };</script>
 
     <script src="https://js.arcgis.com/3.23/"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -59,8 +59,8 @@ Date:        February 2018-->
     <div id="map" style="height:100%;"  >
         <div id="txt_xyCoords" style="position:absolute; left:25px; bottom:1px; color:#404040; z-index:50; font-size:11px"></div>
         <div id="txt_Version" style="position:absolute; left:225px; bottom:1px; color:#404040; z-index:50; font-size:11px">CED Footprinter 2.1.0</div>
-        <img id="loadingImg" src="images/loading.gif" style="position:fixed; right:40%; top:50%; z-index:100;" />
-        <!--<img id="loadingImg" src="{% static 'ced_main/images/grsgmap/loading.gif' %}" style="position:fixed; right:40%; top:50%; z-index:100;" />-->
+        <!--<img id="loadingImg" src="images/loading.gif" style="position:fixed; right:40%; top:50%; z-index:100;" />-->
+        <img id="loadingImg" src="{% static 'ced_main/images/grsgmap/loading.gif' %}" style="position:fixed; right:40%; top:50%; z-index:100;" />
     </div>
 
 
@@ -97,8 +97,8 @@ Date:        February 2018-->
     </div>
 
     <div id="panelBasemaps" class="panelBasemaps bg rounded shadow"><!-- Panel Basemaps -->
-        <div id="basemapTitle"><img src="images/basemaps.png" height="30" title="Switch Base Map" /></div>
-        <!--<div id="basemapTitle"><img src="{% static 'ced_main/images/grsgmap/basemaps.png' %}" height="30" title="Switch Base Map" /></div>-->
+        <!--<div id="basemapTitle"><img src="images/basemaps.png" height="30" title="Switch Base Map" /></div>-->
+        <div id="basemapTitle"><img src="{% static 'ced_main/images/grsgmap/basemaps.png' %}" height="30" title="Switch Base Map" /></div>
         <div id="basemapContent">
             <div id="basemapGallery"></div>
         </div>
