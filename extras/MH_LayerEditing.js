@@ -27,7 +27,11 @@ define([
         },
 
         btn_Next_click: function () {
+            var dom = dojo.byId("tpick-surface-0");
+            on.emit(dom, "click", { bubbles: true, cancelable: true });  //Activate the poly editing tool to confirm previous edits
+            editorWidget.editToolbar.deactivate();                      //DeActivate the toolbar to close cleanly
             alert("will jump to URL per Justin");
+            //window.location.assign("http://www.cnn.com");
         },
 
         initEditor: function (results) {
