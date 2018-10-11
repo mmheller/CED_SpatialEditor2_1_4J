@@ -1,4 +1,7 @@
-﻿function showLoading() {
+﻿//Created By:  Matt Heller,  U.S. Fish and Wildlife Service, Science Applications, Region 6
+//Date:        May 2018, Updated Oct 2018
+
+function showLoading() {
     esri.show(app.loading);
     app.map.disableMapNavigation();
     app.map.hideZoomSlider();
