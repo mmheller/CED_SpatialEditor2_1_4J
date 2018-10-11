@@ -13,7 +13,7 @@ function hideLoading(error) {
 define([
     "extras/MH_LoadSHPintoLayer",
     "extras/MH_LayerEditing",
-    "extras/MH_Zoom2FeatureLayers",
+    "extras/MH_Zoom2FeatureLayersFootprinter",
     "dijit/form/CheckBox",
     "esri/dijit/BasemapGallery",
     "esri/geometry/webMercatorUtils",
