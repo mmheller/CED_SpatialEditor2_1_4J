@@ -121,7 +121,8 @@ Date:        February 2018, updated Oct 2018-->
         <div id="editorDiv"></div>
         <div style='margin-top:15px'><hr /></div>
 
-        <form enctype="multipart/form-data" method="post" id="uploadForm">
+        <!--<form enctype="multipart/form-data" method="post" id="uploadForm">-->  
+        <form enctype="multipart/form-data" method="post" id="uploadForm">{% csrf_token %}  <!--static-->
             <div class="field" id="upload_Field" style='margin-top:15px'>
                 <label class="file-upload" id="upload_label">
                     <span style='margin-right:5px'><strong>Add Zipped-up Shapefile</strong></span>
