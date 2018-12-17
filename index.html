@@ -184,7 +184,8 @@ Date:        February 2018, updated Oct 2018-->
   function startAnimation(){
       var loaderImageElem = document.getElementById('loaderImage');
       if (loaderImageElem === null) {
-          alert("busy loaderImage div does not exist, not running in Django?");
+          //alert("busy loaderImage div does not exist, not running in Django?");
+          //do nothing
       } else {
           loaderImageElem.style.backgroundImage = 'url(' + cImageSrc + ')';
           loaderImageElem.style.width = cWidth + 'px';
