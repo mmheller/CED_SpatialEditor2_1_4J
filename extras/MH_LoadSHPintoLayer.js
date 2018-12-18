@@ -63,9 +63,6 @@ define([
                 'f': 'json', 'callback.html': 'textarea'
             };
 
-            //esriId.destroyCredentials();//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-            //map.removeLayer(pSrcFeatureLayer);
-
             request({            //use the rest generate operation to generate a feature collection from the zipped shapefile
                 url: app.portalUrl4Shapefile + '/sharing/rest/content/features/generate',
                 content: myContent,
