@@ -1,5 +1,5 @@
 ﻿//Created By:  Matt Heller,  U.S. Fish and Wildlife Service, Science Applications, Region 6
-//Date:        May 2018, Updated Oct 2018
+//Date:        May 2018, Updated Dec 2018
 define([
     "dojo/_base/declare",
     "dojo/_base/lang",
@@ -20,7 +20,6 @@ define([
 ) {
 
     return declare([], {
-
         btn_PolyEdit_click: function (results) {
             var dom = dojo.byId("tpick-surface-0");
             on.emit(dom, "click", { bubbles: true, cancelable: true });
@@ -30,7 +29,12 @@ define([
             var dom = dojo.byId("tpick-surface-0");
             on.emit(dom, "click", { bubbles: true, cancelable: true });  //Activate the poly editing tool to confirm previous edits
             editorWidget.editToolbar.deactivate();                      //DeActivate the toolbar to close cleanly
-            alert("will jump to URL per Justin");
+
+            if ((document.location.host.indexOf("localhost") > -1) | (document.location.host.indexOf("github") > -1)) {
+                alert("Local/Testing version not configured with CED");
+            } else {
+                dojo.byId("uploadForm").submit(); //Use for CED production
+            }
         },
 
         initEditor: function (results) {
@@ -45,10 +49,9 @@ define([
                     });
                     var featureLayerInfos = [{
                         featureLayer: pLayer.layer, 'fieldInfos': fieldInfos2, 'isEditable': false
-                        //featureLayer: pLayer.layer, 'fieldInfos': fieldInfos, 'isEditable': false
                     }];
-                    var layers = featureLayerInfos;
 
+                    var layers = featureLayerInfos;
                     var featureLayer = pLayer.layer;
 
                     if (typeof app.iCEDID != 'undefined') {
