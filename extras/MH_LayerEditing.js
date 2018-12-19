@@ -29,8 +29,7 @@ define([
             var dom = dojo.byId("tpick-surface-0");
             on.emit(dom, "click", { bubbles: true, cancelable: true });  //Activate the poly editing tool to confirm previous edits
             editorWidget.editToolbar.deactivate();                      //DeActivate the toolbar to close cleanly
-
-            if ((document.location.host.indexOf("localhost") > -1) | (document.location.host.indexOf("github") > -1)) {
+            if (((document.location.host.indexOf("localhost") > -1) | (document.location.host.indexOf("github") > -1)) & (document.location.host != 'localhost:9000')) {
                 alert("Local/Testing version not configured with CED");
             } else {
                 dojo.byId("uploadForm").submit(); //Use for CED production
