@@ -133,10 +133,10 @@ define([
             }
 
             var strBase_URL = "https://utility.arcgis.com/usrsvcs/servers/5d5fc053dd7e4de4b9765f7a6b6f1f61/rest/services/CEDfrontpage_map_v9_Restrict/FeatureServer/";
-            CED_PP_point = new FeatureLayer(strBase_URL + "0", { id: "0", "opacity": 0.3, mode: FeatureLayer.MODE_ONDEMAND, visible: true });
+            CED_PP_point = new FeatureLayer(strBase_URL + "0", { id: "0", "opacity": 0.3, mode: FeatureLayer.MODE_ONDEMAND, visible: false });
             CED_PP_point.setDefinitionExpression("((SourceFeatureType = 'point') OR ( SourceFeatureType = 'poly' AND Wobbled_GIS = 1)) and (TypeAct not in ('Non-Spatial Plan', 'Non-Spatial Project'))");
-            CED_PP_line = new FeatureLayer(strBase_URL + "1", { id: "1", "opacity": 0.3, mode: FeatureLayer.MODE_ONDEMAND, visible: true });
-            CED_PP_poly = new FeatureLayer(strBase_URL + "2", { id: "2", "opacity": 0.2, mode: esri.layers.FeatureLayer.MODE_ONDEMAND, autoGeneralize: true, visible: true });
+            CED_PP_line = new FeatureLayer(strBase_URL + "1", { id: "1", "opacity": 0.3, mode: FeatureLayer.MODE_ONDEMAND, visible: false });
+            CED_PP_poly = new FeatureLayer(strBase_URL + "2", { id: "2", "opacity": 0.2, mode: esri.layers.FeatureLayer.MODE_ONDEMAND, autoGeneralize: true, visible: false });
 
             app.map.addLayers([pSrcFeatureLayer, CED_PP_poly, CED_PP_line, CED_PP_point]);
             var cbxLayers = [];
