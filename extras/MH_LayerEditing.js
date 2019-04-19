@@ -29,10 +29,15 @@ define([
             var dom = dojo.byId("tpick-surface-0");
             on.emit(dom, "click", { bubbles: true, cancelable: true });  //Activate the poly editing tool to confirm previous edits
             editorWidget.editToolbar.deactivate();                      //DeActivate the toolbar to close cleanly
-            if (((document.location.host.indexOf("localhost") > -1) | (document.location.host.indexOf("github") > -1)) & (document.location.host != 'localhost:9000')) {
-                alert("Local/Testing version not configured with CED");
+
+            if ((app.blnEditOccured) & (app.iCEDID != 'undefined')) {
+                app.pProcAreaIntersect.StartAreaIntersect();
             } else {
-                dojo.byId("uploadForm").submit(); //Use for CED production
+                if (((document.location.host.indexOf("localhost") > -1) | (document.location.host.indexOf("github") > -1)) & (document.location.host != 'localhost:9000')) {
+                    alert("Local/Testing version not configured with CED");
+                } else {
+                    dojo.byId("uploadForm").submit(); //Use for CED production
+                }
             }
         },
 
@@ -86,8 +91,21 @@ define([
                     var params = { settings: settings };
 
                     editorWidget = new esri.dijit.editing.Editor(params, 'editorDiv');
+                    
+
+
                     app.map.enableSnapping({ snapKey: dojo.keys.copyKey });       //Dojo.keys.copyKey maps to CTRL in Windows and CMD in Mac !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     editorWidget.startup();
+
+                    featureLayer.on("edits-complete", function (evt) {
+                        app.blnEditOccured = true;  //this will allow the area and intersect calculations in the MH_ProcAreaIntersect code
+                    });
+
+
+                    editorWidget.editToolbar.on("graphic-move-stop", function (evt) {
+                        app.blnEditOccured = true;  //this will allow the area and intersect calculations in the MH_ProcAreaIntersect code
+                    });
+
                     app.map.infoWindow.resize(325, 500);
                 }
             });
