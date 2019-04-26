@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--Created By:  Matt Heller, U.S. Fish and Wildlife Service, Region 6 Science Applications
-Date:        February 2018, updated April 2019-->
+Date:        February 2018, updated May 2019-->
 
 {% load staticfiles %}
 <html>
@@ -11,7 +11,6 @@ Date:        February 2018, updated April 2019-->
    
     <link rel="stylesheet" href="https://js.arcgis.com/3.28/dijit/themes/claro/claro.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.28/esri/css/esri.css" />
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
     <!--<link rel="stylesheet" type="text/css" href="Styles/panelFootprinter.css" />-->
@@ -101,6 +100,13 @@ Date:        February 2018, updated April 2019-->
             </div>
             <span class="file-upload-status" style="opacity:1;margin-right:5px;" id="upload-status"></span>
             <span class="file-upload-status" style="opacity:1;margin-right:5px;" id="userId"></span>
+            <div style="display:none;">
+                <input id="id_countyvals" name="countyvals" />
+                <input id="id_grsgpopvals" name="grsgpopvals" />
+                <input id="id_mzvals" name="mzvals" />
+                <input id="id_statevals" name="statevals" />
+                <input id="id_areavals" name="areavals" />
+            </div>
         </form>
     </div>
 
@@ -116,16 +122,18 @@ Date:        February 2018, updated April 2019-->
       <div id="panelLayers2Toggle" class="panelLayers2Toggle bg rounded shadow">
           <!-- Panel Basemaps -->
           <form id="toggleForm">
-              <div id="LayerToggleDiv" style="padding: 2px 2px"></div>
+              <div id="LayerToggleDiv" style="display:none; padding: 2px 2px"></div>
+              <div id="ToggleGraphicsContainer" style="display:none ">
+                  <div id="ToggleGraphics" style="display:none; padding: 2px 2px; "></div>
+              </div>
           </form>
       </div>
 
       <div id="nextButtonPanel" class="nextButtonPanel bg rounded shadow">
           <div id="nextButtonPanelDiv"></div>
-          <input id="btn_Next" type="button" value="Save and Go To the Next Step" />
+          <input id="btn_Next" type="button" class="button100" value="Save and Go To the Next Step" />
       </div>
-
-
+       
       <div id="dialog" class="dialog_text ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable ui-resizable" title="Spatial edits processed successfully!"></div>
       <div id="dialogError" class="dialogError_text ui-dialog-content ui-widget-content" title="Spatial Processing Issue"></div>
   </body>
