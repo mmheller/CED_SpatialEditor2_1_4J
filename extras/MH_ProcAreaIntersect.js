@@ -248,7 +248,7 @@ define([
                 var pGraphic = null;
                 var iRedValue4RBG = 98 + (app.m_ProcIndex * 40);
                 var iBlueValue4RBG = 204 - (app.m_ProcIndex * 40);
-                var nTransparency = 0.5 - (app.m_ProcIndex * 0.2);
+                var nTransparency = 0.6 - (app.m_ProcIndex * 0.1);
                 var pfillSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                                     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
                                     new Color2([iRedValue4RBG, 194, iBlueValue4RBG]), 2),
