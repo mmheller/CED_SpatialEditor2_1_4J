@@ -1,5 +1,5 @@
 ﻿//Created By:  Matt Heller,  U.S. Fish and Wildlife Service, Science Applications, Region 6
-//Date:        May 2018, Updated May 2019
+//Date:        February 2018, updated May 2019
 
 function showLoading() {
     esri.show(app.loading);
@@ -54,7 +54,7 @@ define([
             strCountiesURL = "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Counties/FeatureServer/0";
             strGRSGPopulationAreasURL = "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/CED_Base_Layers/FeatureServer/0";
             strWAFWAManagementZones = "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/CED_Base_Layers/FeatureServer/1";
-            strStates = "https://services.arcgis.com/ue9rwulIoeLEI9bj/arcgis/rest/services/US_StateBoundaries/FeatureServer/0";
+            strStates = "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/States_and_Provinces_Map/FeatureServer/0";
 
             app.m_Array2Proc = [];
             //app.m_Array2Proc.push([strHUCs, "HUC12", "HUCs"]);
@@ -315,11 +315,11 @@ define([
                         $("#dialog").dialog({
                             modal: true,
                             buttons: {
-                                Ok: function () {
+                                "Accept Edits and Continue": function () {
                                     $(this).dialog("close");
                                     ExitFootprinter();
                                 },
-                                Cancel: function () {
+                                "Cancel Process and Continue Editing": function () {
                                     $(this).dialog("close");
                                 }
                             },
