@@ -374,7 +374,7 @@ define([
 
                     if (theme == "GRSG Population Areas") {
                         if (grsgpops.length > 0) {
-                            grsgpops += "," + pResultObject2.intersectName;
+                            grsgpops += ";" + pResultObject2.intersectName;
                         } else {
                             grsgpops = pResultObject2.intersectName;
                         }
