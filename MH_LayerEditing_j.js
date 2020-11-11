@@ -1,9 +1,5 @@
-﻿//Created By:  Matt Heller, U.S. Fish and Wildlife Service, Region 6 Science Applications
-//Date:        May 2018, Updated May 2019
-
-
-
-
+﻿//Created By:  Matt Heller,  U.S. Fish and Wildlife Service, Science Applications, Region 6
+//Date:        May 2018, Updated Dec 2018
 define([
     "dojo/_base/declare",
     "dojo/_base/lang",
@@ -25,21 +21,14 @@ define([
 
     return declare([], {
         btn_PolyEdit_click: function (results) {
-            var dom = document.getElementById("tpick-surface-0");
-			on.emit(dom, "click", { bubbles: true, cancelable: true });
+            var dom = dojo.byId("tpick-surface-0");
+            on.emit(dom, "click", { bubbles: true, cancelable: true });
         },
 
-        DeAct: function () {
-            var dom = document.getElementById("tpick-surface-0");
+        btn_Next_click: function () {
+            var dom = dojo.byId("tpick-surface-0");
             on.emit(dom, "click", { bubbles: true, cancelable: true });  //Activate the poly editing tool to confirm previous edits
             editorWidget.editToolbar.deactivate();                      //DeActivate the toolbar to close cleanly
-        },
-
-
-
-		btn_Next_click: function () {
-			console.log("in btn_Next_click  2222");
-            app.pLEdit.DeAct();
 
             if ((app.blnEditOccured) & (app.iCEDID != 'undefined')) {
                 app.pProcAreaIntersect.StartAreaIntersect();
@@ -47,9 +36,56 @@ define([
                 if (((document.location.host.indexOf("localhost") > -1) | (document.location.host.indexOf("github") > -1)) & (document.location.host != 'localhost:9000')) {
                     alert("Local/Testing version not configured with CED");
                 } else {
-                    //In this scenario no-edits so no area/intersect calculations therefore no values to pass on
-                    //dojo.byId("uploadForm").submit(); //Use for CED production//firefox has issues finding HTML using this method
-                    document.getElementById("uploadForm").submit(); //Use for CED production
+                    var counties = ""
+                    var states = ""
+                    var wafwamz = ""
+                    var grsgpops = ""
+
+                    for (var i = 0; i < app.m_ArrayIntersectResults.length; i++) {
+                        pResultObject2 = app.m_ArrayIntersectResults[i];
+                        var theme = pResultObject2.intersectTheme;
+                        var result = pResultObject2.intersectName;
+
+                        if(theme == "Counties"){
+                            if(counties.length > 0){
+                                counties += "," + pResultObject2.intersectName
+                            }else{
+                                counties = pResultObject2.intersectName
+                            }
+                        }
+
+                        if(theme == "States"){
+                            if(states.length > 0){
+                                states += "," + pResultObject2.intersectName
+                            }else{
+                                states = pResultObject2.intersectName
+                            }
+                        }
+
+                        if(theme == "WAFWA Management Zones"){
+                            if(wafwamz.length > 0){
+                                wafwamz += "," + pResultObject2.intersectName
+                            }else{
+                                wafwamz = pResultObject2.intersectName
+                            }
+                        }
+
+                        if(theme == "GRSG Population Areas"){
+                            if(grsgpops.length > 0){
+                                grsgpops += "," + pResultObject2.intersectName
+                            }else{
+                                grsgpops = pResultObject2.intersectName
+                            }
+                        }
+                        
+                    }
+
+                    document.getElementById('id_countyvals').value = counties
+                    document.getElementById('id_statevals').value = states
+                    document.getElementById('id_mzvals').value = wafwamz
+                    document.getElementById('id_grsgpopvals').value = grsgpops
+                    document.getElementById('id_areavals').value = app.m_EffortArea
+                    dojo.byId("uploadForm").submit(); //Use for CED production
                 }
             }
         },
@@ -105,6 +141,8 @@ define([
 
                     editorWidget = new esri.dijit.editing.Editor(params, 'editorDiv');
                     
+
+
                     app.map.enableSnapping({ snapKey: dojo.keys.copyKey });       //Dojo.keys.copyKey maps to CTRL in Windows and CMD in Mac !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     editorWidget.startup();
 
@@ -112,24 +150,9 @@ define([
                         app.blnEditOccured = true;  //this will allow the area and intersect calculations in the MH_ProcAreaIntersect code
                     });
 
+
                     editorWidget.editToolbar.on("graphic-move-stop", function (evt) {
                         app.blnEditOccured = true;  //this will allow the area and intersect calculations in the MH_ProcAreaIntersect code
-                        app.pLEdit.DeAct();
-                    });
-
-                    editorWidget.editToolbar.on("scale-stop", function (evt) {
-                        app.blnEditOccured = true;  //this will allow the area and intersect calculations in the MH_ProcAreaIntersect code
-                        app.pLEdit.DeAct();
-                    });
-
-                    editorWidget.editToolbar.on("rotate-stop", function (evt) {
-                        app.blnEditOccured = true;  //this will allow the area and intersect calculations in the MH_ProcAreaIntersect code
-                        app.pLEdit.DeAct();
-                    });
-
-                    editorWidget.editToolbar.on("vertex-move-stop", function (evt) {
-                        app.blnEditOccured = true;  //this will allow the area and intersect calculations in the MH_ProcAreaIntersect code
-                        app.pLEdit.DeAct();
                     });
 
                     app.map.infoWindow.resize(325, 500);
